@@ -12,7 +12,8 @@ import JSONValue
 // Our example string
 let JSONDataString = "[\"wat\", 5, {\"foo\": 3.5, \"bar\": null, \"baz\": true}]"
 
-// JSONValue comes with an NSData decoder; we'll use that to convert our string to a JSONValue
+// JSONValue comes with an NSData decoder; we'll use that to convert our string to a
+// JSONValue
 let JSONData = JSONDataString.dataUsingEncoding(NSUTF8StringEncoding)!
 let JSON = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
 
@@ -23,17 +24,20 @@ guard case let .String(firstItemValue) = JSON[0] else {
     return
 }
 
-// Now we have a local variable called firstItemValue that is a Swift.String containing the value "wat"
+// Now we have a local variable called firstItemValue that is a Swift.String 
+// containing the value "wat"
 print(firstItemValue) // Prints "wat"
 
 guard case let .Int(secondItemValue) = JSON[1] else { return }
 
 print(secondItemValue) // Prints 5
 
-// Our third item is a dictionary. We'll extract that data out into a regular Swift dictionary of type [String: JSONValue]
+// Our third item is a dictionary. We'll extract that data out into a regular 
+// Swift dictionary of type [String: JSONValue]
 guard case let .Dictionary(thirdItemValue) = JSON[2] else { return }
 
-// Now for some fancy Swift pattern matching. We want our JSONValue.Double's value from thirdItemValue under the "foo" key:
+// Now for some fancy Swift pattern matching. We want our JSONValue.Double's 
+// value from thirdItemValue under the "foo" key:
 guard case let .Double(fooValue)? = thirdItemValue["foo"] else { return }
 
 print(fooValue) // Prints 3.5
