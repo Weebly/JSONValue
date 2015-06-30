@@ -12,15 +12,15 @@ import JSONValue
 // Our example string
 let JSONDataString = "[\"wat\", 5, {\"foo\": 3.5, \"bar\": null, \"baz\": true}]"
 
-// JSONValue comes with an NSData decoder; we'll use that to convert our string to a
-// JSONValue
+// JSONValue comes with an NSData decoder; we'll use that to convert our string 
+// to a JSONValue
 let JSONData = JSONDataString.dataUsingEncoding(NSUTF8StringEncoding)!
 let JSON = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
 
 // Lets access the first item in our array, confirming its a String type
 guard case let .String(firstItemValue) = JSON[0] else {
-    // If this block gets hit, the first item in our array isn't a string. In our case
-    // it is so it isn't hit
+    // If this block gets hit, the first item in our array isn't a string.
+    // In our case it is so it isn't hit.
     return
 }
 
