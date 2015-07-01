@@ -81,7 +81,7 @@ of JSONValue is bound to the JSONValueCoder protocol.
 * If you need help or have a general question use [Stack Overflow](https://stackoverflow.com/questions/tagged/jsonvalue)
 * If you've found a bug or have a feature request [open an issue](https://github.com/weebly/JSONValue/issues/new)
 
-We're also frequently in the [Gitter](https://gitter.im/weebly/TableSchemer) chatroom!
+We're also frequently in the [Gitter](https://gitter.im/weebly/JSONValue) chatroom!
 
 # Contributing
 
