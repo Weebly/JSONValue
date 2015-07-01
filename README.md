@@ -64,3 +64,36 @@ if case let .String(barValue)? = thirdItemValue["bar"]?.nullable {
     print(barValue) // Would print the string contained in "bar", if it had one.
 }
 ```
+
+# Custom Coders
+
+JSONValue comes with a single coder, JSONValueJSONDataCoder. It implements the JSONValueCoder protocol, which has
+an interface that defines best practices when working with JSON data, such as error handling and bi-directional
+coding. JSONValueJSONDataCoder uses Foundation's NSJSONSerialization class under the hood to keep the library
+small, but that may not be the fastest option for you. 
+
+If you'd like create your own JSONValueCoder I suggest looking at the JSONValueJSONDataCoder implementation. Of 
+course, if you'd prefer you can create your own encoder or decoder implementations and create them as you'd like. None
+of JSONValue is bound to the JSONValueCoder protocol.
+
+# Contact
+
+* If you need help or have a general question use [Stack Overflow](https://stackoverflow.com/questions/tagged/jsonvalue)
+* If you've found a bug or have a feature request [open an issue](https://github.com/weebly/JSONValue/issues/new)
+
+We're also frequently in the [Gitter](https://gitter.im/weebly/TableSchemer) chatroom!
+
+# Contributing
+
+We love to have your help to make JSONValue better. Feel free to
+
+- open an issue if you run into any problem.
+- fork the project and submit pull request.
+
+# License
+
+Copyright (c) 2015, Weebly All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. Neither the name of Weebly nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Weebly, Inc BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
