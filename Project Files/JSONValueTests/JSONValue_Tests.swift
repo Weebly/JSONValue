@@ -15,7 +15,7 @@ class JSONValue_Tests: XCTestCase {
 
     func testNullable_withString_returnsString() {
         let value = JSONValue.String("foo")
-        guard case let .String(fooString)? = value.nullable else {
+        guard case .String(let fooString)? = value.nullable else {
             XCTFail("Nullable returned incorrect value")
             return
         }
@@ -25,7 +25,7 @@ class JSONValue_Tests: XCTestCase {
 
     func testNullable_withNull_expectingString_returnsNil() {
         let value = JSONValue.Null
-        if case let .String(nullString)? = value.nullable {
+        if case .String(let nullString)? = value.nullable {
             XCTFail("Expected a null value, but extracted a String: \(nullString)")
         }
     }

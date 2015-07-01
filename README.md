@@ -18,7 +18,7 @@ let JSONData = JSONDataString.dataUsingEncoding(NSUTF8StringEncoding)!
 let JSON = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
 
 // Lets access the first item in our array, confirming its a String type
-guard case let .String(firstItemValue) = JSON[0] else {
+guard case .String(let firstItemValue) = JSON[0] else {
     // If this block gets hit, the first item in our array isn't a string.
     // In our case it is so it isn't hit.
     return
@@ -28,23 +28,23 @@ guard case let .String(firstItemValue) = JSON[0] else {
 // containing the value "wat"
 print(firstItemValue) // Prints "wat"
 
-guard case let .Int(secondItemValue) = JSON[1] else { return }
+guard case .Int(let secondItemValue) = JSON[1] else { return }
 
 print(secondItemValue) // Prints 5
 
 // Our third item is a dictionary. We'll extract that data out into a regular 
 // Swift dictionary of type [String: JSONValue]
-guard case let .Dictionary(thirdItemValue) = JSON[2] else { return }
+guard case .Dictionary(let thirdItemValue) = JSON[2] else { return }
 
 // Now for some fancy Swift pattern matching. We want our JSONValue.Double's 
 // value from thirdItemValue under the "foo" key:
-guard case let .Double(fooValue)? = thirdItemValue["foo"] else { return }
+guard case .Double(let fooValue)? = thirdItemValue["foo"] else { return }
 
 print(fooValue) // Prints 3.5
 
 // Lets skip over "bar" for now, and grab our "baz"
 
-guard case let .Bool(bazValue)? = thirdItemValue["baz"] else { return }
+guard case .Bool(let bazValue)? = thirdItemValue["baz"] else { return }
 
 print(bazValue) // Prints true
 
@@ -60,7 +60,7 @@ returns self. In our previous example, lets assume that "bar" can return a Strin
 there so the API returns null. Here's how we'd make use of it:
 
 ```swift
-if case let .String(barValue)? = thirdItemValue["bar"]?.nullable {
+if case .String(let barValue)? = thirdItemValue["bar"]?.nullable {
     print(barValue) // Would print the string contained in "bar", if it had one.
 }
 ```
