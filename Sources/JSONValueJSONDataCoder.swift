@@ -70,13 +70,13 @@ public class JSONValueJSONDataCoder: JSONValueCoder {
         case .Dictionary(let dict):
             let mutableDict = NSMutableDictionary()
             for (key, val) in dict {
-                mutableDict.setValue(serializeJSONValueToObject(val.value), forKey: key)
+                mutableDict.setValue(serializeJSONValueToObject(val), forKey: key)
             }
             object = NSDictionary(dictionary: mutableDict)
         case .Array(let array):
             let mutableArray = NSMutableArray()
             for obj in array {
-                mutableArray.addObject(serializeJSONValueToObject(obj.value))
+                mutableArray.addObject(serializeJSONValueToObject(obj))
             }
             
             object = NSArray(array: mutableArray)
@@ -89,22 +89,22 @@ public class JSONValueJSONDataCoder: JSONValueCoder {
         let convertedData: JSONValue
         
         if let array = object as? NSArray {
-            var dataArray = [JSONValueWrapper]()
+            var dataArray = [JSONValue]()
             
             for obj in array {
-                dataArray.append(JSONValueWrapper(value: try deserializeObject(obj)))
+                dataArray.append(try deserializeObject(obj))
             }
             
             convertedData = JSONValue.Array(dataArray)
         } else if let dict = object as? NSDictionary {
-            var dataDict = [String: JSONValueWrapper]()
+            var dataDict = [String: JSONValue]()
             
             for (key, obj) in dict {
                 guard let k = key as? String else {
                     throw JSONValueCoderError.InvalidObjectKey
                 }
                 
-                dataDict[k] = JSONValueWrapper(value: try deserializeObject(obj))
+                dataDict[k] = try deserializeObject(obj)
             }
             
             convertedData = JSONValue.Dictionary(dataDict)

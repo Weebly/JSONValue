@@ -70,13 +70,13 @@ class JSONValue_Tests: XCTestCase {
     
     func testEquality_forStringAndArray_isFalse() {
         let left = JSONValue.String("foo")
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forStringAndDictionary_isFalse() {
         let left = JSONValue.String("foo")
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
@@ -120,13 +120,13 @@ class JSONValue_Tests: XCTestCase {
     
     func testEquality_forDoubleAndArray_isFalse() {
         let left = JSONValue.Double(6.3)
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDoubleAndDictionary_isFalse() {
         let left = JSONValue.Double(6.3)
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
@@ -170,13 +170,13 @@ class JSONValue_Tests: XCTestCase {
     
     func testEquality_forIntAndArray_isFalse() {
         let left = JSONValue.Int(6)
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Array([JSONValue.Int(3)))
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forIntAndDictionary_isFalse() {
         let left = JSONValue.Int(6)
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
@@ -220,13 +220,13 @@ class JSONValue_Tests: XCTestCase {
     
     func testEquality_forBoolAndArray_isFalse() {
         let left = JSONValue.Bool(true)
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forBoolAndDictionary_isFalse() {
         let left = JSONValue.Bool(true)
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
@@ -264,113 +264,113 @@ class JSONValue_Tests: XCTestCase {
     
     func testEquality_forNullAndArray_isFalse() {
         let left = JSONValue.Null
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forNullAndDictionary_isFalse() {
         let left = JSONValue.Null
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
     // MARK: Array Equality
     
     func testEquality_forEqualArrays_isTrue() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertTrue(left == right)
     }
     
     func testEquality_forInequalArrays_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(2))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
+        let right = JSONValue.Array([JSONValue.Int(2)])
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forArrayAndString_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
         let right = JSONValue.String("bar")
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forArrayAndDouble_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
         let right = JSONValue.Double(0.5)
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forArrayAndInt_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
         let right = JSONValue.Int(5)
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forArrayAndBool_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
         let right = JSONValue.Bool(false)
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forArrayAndNull_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
         let right = JSONValue.Null
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forArrayAndDictionary_isFalse() {
-        let left = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Array([JSONValue.Int(3)])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
     // MARK: Dictionary Equality
     
     func testEquality_forEqualDictionarys_isTrue() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         XCTAssertTrue(left == right)
     }
     
     func testEquality_forInequalDictionarys_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
-        let right = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(4))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
+        let right = JSONValue.Dictionary(["bar": JSONValue.Int(4)])
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDictionaryAndString_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         let right = JSONValue.String("bar")
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDictionaryAndDouble_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         let right = JSONValue.Double(5.3)
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDictionaryAndInt_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         let right = JSONValue.Int(5)
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDictionaryAndBool_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         let right = JSONValue.Bool(false)
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDictionaryAndNull_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
         let right = JSONValue.Null
         XCTAssertFalse(left == right)
     }
     
     func testEquality_forDictionaryAndArray_isFalse() {
-        let left = JSONValue.Dictionary(["bar": JSONValueWrapper(value: JSONValue.Int(3))])
-        let right = JSONValue.Array([JSONValueWrapper(value: JSONValue.Int(3))])
+        let left = JSONValue.Dictionary(["bar": JSONValue.Int(3)])
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
 }

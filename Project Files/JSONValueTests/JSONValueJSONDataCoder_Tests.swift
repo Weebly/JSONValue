@@ -25,12 +25,12 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     // MARK: encodeJSONValue
     
     func testEncodeJSONValue_withArray_encodesCorrectly() {
-        let array: [JSONValueWrapper] = [
-            JSONValueWrapper(value: .String("foo")),
-            JSONValueWrapper(value: .Int(5)),
-            JSONValueWrapper(value: .Double(1.8)),
-            JSONValueWrapper(value: .Bool(false)),
-            JSONValueWrapper(value: .Null)
+        let array: [JSONValue] = [
+            .String("foo"),
+            .Int(5),
+            .Double(1.8),
+            .Bool(false),
+            .Null
         ]
         let value = JSONValue.Array(array)
         let data = try! subject.encodeJSONValue(value)
@@ -40,12 +40,12 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     }
     
     func testEncodeJSONValue_withDictionary_encodesCorrectly() {
-        let dict: [String: JSONValueWrapper] = [
-            "s": JSONValueWrapper(value: .String("bar")),
-            "i": JSONValueWrapper(value: .Int(10)),
-            "d": JSONValueWrapper(value: .Double(5.3)),
-            "b": JSONValueWrapper(value: .Bool(true)),
-            "n": JSONValueWrapper(value: .Null)
+        let dict: [String: JSONValue] = [
+            "s": .String("bar"),
+            "i": .Int(10),
+            "d": .Double(5.3),
+            "b": .Bool(true),
+            "n": .Null
         ]
         let value = JSONValue.Dictionary(dict)
         let data = try! subject.encodeJSONValue(value)
@@ -55,15 +55,15 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     }
     
     func testEncodeJSONValue_withComplicatedContents_encodesCorrectly() {
-        let array: [JSONValueWrapper] = [
-            JSONValueWrapper(value: .String("foo")),
-            JSONValueWrapper(value: .Dictionary([
-                "bar": JSONValueWrapper(value: .Int(7)),
-                "arr": JSONValueWrapper(value: .Array([
-                    JSONValueWrapper(value: .Int(3)),
-                    JSONValueWrapper(value: .Bool(true))
-                ]))
-            ]))
+        let array: [JSONValue] = [
+            .String("foo"),
+            .Dictionary([
+                "bar": .Int(7),
+                "arr": .Array([
+                    .Int(3),
+                    .Bool(true)
+                ])
+            ])
         ]
         
         let value = JSONValue.Array(array)
@@ -151,40 +151,40 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
             return
         }
 
-        guard case let .String(watValue) = rootArray[0].value else {
+        guard case let .String(watValue) = rootArray[0] else {
             XCTFail("Decoding generated an incorrect first element")
             return
         }
 
         XCTAssertEqual(watValue, "wat")
 
-        guard case let .Int(fiveValue) = rootArray[1].value else {
+        guard case let .Int(fiveValue) = rootArray[1] else {
             XCTFail("Decoding generated an incorrect second element")
             return
         }
 
         XCTAssertEqual(fiveValue, 5)
 
-        guard case let .Dictionary(dictionaryValue) = rootArray[2].value else {
+        guard case let .Dictionary(dictionaryValue) = rootArray[2] else {
             XCTFail("Decoding generated an incorrect third element")
             return
         }
 
-        guard case let .Double(fooValue)? = dictionaryValue["foo"]?.value else {
+        guard case let .Double(fooValue)? = dictionaryValue["foo"] else {
             XCTFail("Decoding generated an incorrect foo element")
             return
         }
 
         XCTAssertEqual(fooValue, 3.5)
 
-        guard let nullValue = dictionaryValue["bar"]?.value else {
+        guard let nullValue = dictionaryValue["bar"] else {
             XCTFail("Decoding generated an incorrect bar element")
             return
         }
 
         XCTAssertEqual(nullValue, JSONValue.Null)
 
-        guard case let .Bool(bazValue)? = dictionaryValue["baz"]?.value else {
+        guard case let .Bool(bazValue)? = dictionaryValue["baz"] else {
             XCTFail("Decoding generated an incorrect baz element")
             return
         }
