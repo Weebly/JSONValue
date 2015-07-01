@@ -146,31 +146,31 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
             return
         }
 
-        guard case let .Array(rootArray) = value else {
+        guard case .Array(let rootArray) = value else {
             XCTFail("Decoding generated an incorrect root element")
             return
         }
 
-        guard case let .String(watValue) = rootArray[0] else {
+        guard case .String(let watValue) = rootArray[0] else {
             XCTFail("Decoding generated an incorrect first element")
             return
         }
 
         XCTAssertEqual(watValue, "wat")
 
-        guard case let .Int(fiveValue) = rootArray[1] else {
+        guard case .Int(let fiveValue) = rootArray[1] else {
             XCTFail("Decoding generated an incorrect second element")
             return
         }
 
         XCTAssertEqual(fiveValue, 5)
 
-        guard case let .Dictionary(dictionaryValue) = rootArray[2] else {
+        guard case .Dictionary(let dictionaryValue) = rootArray[2] else {
             XCTFail("Decoding generated an incorrect third element")
             return
         }
 
-        guard case let .Double(fooValue)? = dictionaryValue["foo"] else {
+        guard case .Double(let fooValue)? = dictionaryValue["foo"] else {
             XCTFail("Decoding generated an incorrect foo element")
             return
         }
@@ -184,7 +184,7 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
 
         XCTAssertEqual(nullValue, JSONValue.Null)
 
-        guard case let .Bool(bazValue)? = dictionaryValue["baz"] else {
+        guard case .Bool(let bazValue)? = dictionaryValue["baz"] else {
             XCTFail("Decoding generated an incorrect baz element")
             return
         }
