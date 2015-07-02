@@ -28,15 +28,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A584D811B42E48500CFA6D0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		1A584D811B42E48500CFA6D0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A6331DA1B3D985200E8E09B /* JSONValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6331DD1B3D985200E8E09B /* JSONValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONValue.h; sourceTree = "<group>"; };
 		1A6331DF1B3D985200E8E09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6331E41B3D985200E8E09B /* JSONValueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONValueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6331EB1B3D985200E8E09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A6331F41B3D985E00E8E09B /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONValue.swift; path = ../../Sources/JSONValue.swift; sourceTree = "<group>"; };
-		1A6331F61B3D9A7500E8E09B /* JSONValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONValueCoder.swift; path = ../../Sources/JSONValueCoder.swift; sourceTree = "<group>"; };
-		1A6331FB1B3D9AF000E8E09B /* JSONValueJSONDataCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONValueJSONDataCoder.swift; path = ../../Sources/JSONValueJSONDataCoder.swift; sourceTree = "<group>"; };
+		1A6331F41B3D985E00E8E09B /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		1A6331F61B3D9A7500E8E09B /* JSONValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueCoder.swift; sourceTree = "<group>"; };
+		1A6331FB1B3D9AF000E8E09B /* JSONValueJSONDataCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueJSONDataCoder.swift; sourceTree = "<group>"; };
 		1A6331FD1B3DFA0200E8E09B /* JSONValueJSONDataCoder_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueJSONDataCoder_Tests.swift; sourceTree = "<group>"; };
 		1A6331FF1B3E097A00E8E09B /* JSONValue_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue_Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
