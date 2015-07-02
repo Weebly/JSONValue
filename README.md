@@ -1,6 +1,8 @@
 JSONValue is the best way to represent JSON data in your Swift application. Each JSON type is a case in the JSONValue enum,
 and with the use of new syntax and pattern matching, JSONValue provides a clean and robust way to access your data.
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 # Usage
 
 The best way to explain how to use JSONValue is to give an example. For brevity, I'm banging a lot of API calls. Don't do this 
