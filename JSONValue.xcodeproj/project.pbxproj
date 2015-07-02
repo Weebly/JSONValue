@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A584D821B42E48500CFA6D0 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A584D811B42E48500CFA6D0 /* README.md */; };
 		1A6331DE1B3D985200E8E09B /* JSONValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6331DD1B3D985200E8E09B /* JSONValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A6331E51B3D985200E8E09B /* JSONValue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6331DA1B3D985200E8E09B /* JSONValue.framework */; };
 		1A6331F51B3D985E00E8E09B /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331F41B3D985E00E8E09B /* JSONValue.swift */; };
@@ -219,7 +218,6 @@
 			files = (
 				1A6331FC1B3D9AF000E8E09B /* JSONValueJSONDataCoder.swift in Sources */,
 				1A6331F71B3D9A7500E8E09B /* JSONValueCoder.swift in Sources */,
-				1A584D821B42E48500CFA6D0 /* README.md in Sources */,
 				1A6331F51B3D985E00E8E09B /* JSONValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
