@@ -16,24 +16,14 @@ public enum JSONValue {
     case Int(Swift.Int64)
     case Bool(Swift.Bool)
     case Null
-    case Array([JSONValueWrapper])
-    case Dictionary([Swift.String: JSONValueWrapper])
-//    indirect case Array([JSONValue])
-//    indirect case Dictionary([Swift.String: JSONValue])
+    indirect case Array([JSONValue])
+    indirect case Dictionary([Swift.String: JSONValue])
 
     public var nullable: JSONValue? {
         switch self {
         case .Null: return nil
         default: return self
         }
-    }
-}
-
-// TODO: When we can support recurisve enums, remove this
-public struct JSONValueWrapper {
-    public let value: JSONValue
-    public init(value: JSONValue) {
-        self.value = value
     }
 }
 
@@ -79,7 +69,7 @@ public func == (lhs: JSONValue, rhs: JSONValue) -> Bool {
     case .Array(let l):
         if case .Array(let r) = rhs where l.count == r.count {
             for (index, leftObject) in l.enumerate() {
-                if leftObject.value != r[index].value {
+                if leftObject != r[index] {
                     return false
                 }
             }
@@ -92,7 +82,7 @@ public func == (lhs: JSONValue, rhs: JSONValue) -> Bool {
     case .Dictionary(let l):
         if case .Dictionary(let r) = rhs where l.count == r.count {
             for (key, leftObject) in l {
-                if leftObject.value != r[key]?.value {
+                if leftObject != r[key] {
                     return false
                 }
             }
