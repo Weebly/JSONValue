@@ -16,8 +16,8 @@ public enum JSONValue {
     case Int(Swift.Int64)
     case Bool(Swift.Bool)
     case Null
-    indirect case Array([JSONValue])
-    indirect case Dictionary([Swift.String: JSONValue])
+    case Array([JSONValue])
+    case Dictionary([Swift.String: JSONValue])
 
     public var nullable: JSONValue? {
         switch self {

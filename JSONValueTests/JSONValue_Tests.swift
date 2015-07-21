@@ -170,7 +170,7 @@ class JSONValue_Tests: XCTestCase {
     
     func testEquality_forIntAndArray_isFalse() {
         let left = JSONValue.Int(6)
-        let right = JSONValue.Array([JSONValue.Int(3)))
+        let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
     
