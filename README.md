@@ -42,8 +42,10 @@ if case .Int(let secondItemValue) = JSON[1] {
 
 // Guard also makes a matched variable available at the scope it was
 // called. This allows you to prevent nesting if's if the condition
-// is required for subsequent statements.
-guard case .Dictionary(let thirdItemValue) = JSON[2] else { return }
+// is required for subsequent statements. In this use of guard
+// i'll place the let before the case; this is typical when
+// an enum has more than one associated value.
+guard case let .Dictionary(thirdItemValue) = JSON[2] else { return }
 
 // Now for some fancy Swift pattern matching. We want our JSONValue.Double's 
 // value from thirdItemValue under the "foo" key:
