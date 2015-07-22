@@ -22,7 +22,8 @@ let JSON = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
 // Lets access the first item in our array, confirming its a String type
 guard case .String(let firstItemValue) = JSON[0] else {
     // If this block gets hit, the first item in our array isn't a string.
-    // In our case it is so it isn't hit.
+    // In our case it is so it isn't hit. Using guard this way
+    // allows you to fail early when the JSON isn't what you expect
     return
 }
 
@@ -30,17 +31,27 @@ guard case .String(let firstItemValue) = JSON[0] else {
 // containing the value "wat"
 print(firstItemValue) // Prints "wat"
 
-guard case .Int(let secondItemValue) = JSON[1] else { return }
-
-print(secondItemValue) // Prints 5
+// You can also use if instead of guard, if you don't care as much about
+// the variable being what you expect it to be.
+if case .Int(let secondItemValue) = JSON[1] {
+    print(secondItemValue) // Prints 5
+}
 
 // Our third item is a dictionary. We'll extract that data out into a regular 
 // Swift dictionary of type [String: JSONValue]
+
+// Guard also makes a matched variable available at the scope it was
+// called. This allows you to prevent nesting if's if the condition
+// is required for subsequent statements.
 guard case .Dictionary(let thirdItemValue) = JSON[2] else { return }
 
 // Now for some fancy Swift pattern matching. We want our JSONValue.Double's 
 // value from thirdItemValue under the "foo" key:
 guard case .Double(let fooValue)? = thirdItemValue["foo"] else { return }
+
+// Note that our ? in the above example is a use of the new Optional
+// pattern matching in Swift 2. It unwraps the dictionary result for
+// us.
 
 print(fooValue) // Prints 3.5
 
