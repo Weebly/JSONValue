@@ -373,4 +373,806 @@ class JSONValue_Tests: XCTestCase {
         let right = JSONValue.Array([JSONValue.Int(3)])
         XCTAssertFalse(left == right)
     }
+
+    // MARK: Value
+
+    func testValue_forString_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let value: String = try subject.value()
+            XCTAssertEqual(value, "foo")
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testValue_forInt_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: Int64 = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: Double = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: Bool = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: [JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: [String: JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forInt_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let value: Int64 = try subject.value()
+            XCTAssertEqual(value, 6)
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testValue_forString_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: String = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: Double = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: Bool = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: [JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: [String: JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let value: Bool = try subject.value()
+            XCTAssertEqual(value, true)
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testValue_forString_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: String = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: Double = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forInt_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: Int64 = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: [JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: [String: JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let value: Double = try subject.value()
+            XCTAssertEqual(value, 5.3)
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testValue_forString_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: String = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forInt_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: Int64 = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: Bool = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: [JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: [String: JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let value: [JSONValue] = try subject.value()
+            XCTAssertEqual(value, [JSONValue.Int(5)])
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testValue_forString_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: String = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forInt_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: Int64 = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: Bool = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: Double = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: [String: JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let value: [String: JSONValue] = try subject.value()
+            XCTAssertEqual(value, ["foo": JSONValue.Int(5)])
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testValue_forString_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: String = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forInt_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: Int64 = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: Bool = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: Double = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: [JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forString_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let _: String = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forInt_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let _: Int64 = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forBool_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let _: Bool = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDouble_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let _: Double = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forArray_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let _: [JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testValue_forDictionary_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let _: [String: JSONValue] = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    // MARK: nullableValue
+
+    func testNullableValue_forString_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            if let value: String = try subject.value() {
+                XCTAssertEqual(value, "foo")
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forOptionalString_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let value: String? = try subject.value()
+            if let unwrapped = value {
+                XCTAssertEqual(unwrapped, "foo")
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forInt_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: Int64? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: Double? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: Bool? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: [JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenString() {
+        let subject = JSONValue.String("foo")
+        do {
+            let _: [String: JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forInt_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            if let value: Int64 = try subject.value() {
+                XCTAssertEqual(value, 6)
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forOptionalInt_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let value: Int64? = try subject.value()
+            if let unwrapped = value {
+                XCTAssertEqual(unwrapped, 6)
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forString_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: String? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: Double? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: Bool? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: [JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenInt() {
+        let subject = JSONValue.Int(6)
+        do {
+            let _: [String: JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            if let value: Bool = try subject.value() {
+                XCTAssertTrue(value)
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forOptionalBool_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let value: Bool? = try subject.value()
+            if let unwrapped = value {
+                XCTAssertTrue(unwrapped)
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forString_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: String? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: Double? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forInt_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: Int64? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: [JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenBool() {
+        let subject = JSONValue.Bool(true)
+        do {
+            let _: [String: JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            if let value: Double = try subject.value() {
+                XCTAssertEqual(value, 5.3)
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forOptionalDouble_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let value: Double? = try subject.value()
+            if let unwrapped = value {
+                XCTAssertEqual(unwrapped, 5.3)
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forString_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: String? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forInt_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: Int64? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: Bool? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: [JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenDouble() {
+        let subject = JSONValue.Double(5.3)
+        do {
+            let _: [String: JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            if let value: [JSONValue] = try subject.value() {
+                XCTAssertEqual(value, [JSONValue.Int(5)])
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forOptionalArray_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let value: [JSONValue]? = try subject.value()
+            if let unwrapped = value {
+                XCTAssertEqual(unwrapped, [JSONValue.Int(5)])
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forString_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: String? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forInt_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: Int64? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: Bool? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: Double? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenArray() {
+        let subject = JSONValue.Array([JSONValue.Int(5)])
+        do {
+            let _: [String: JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            if let value: [String: JSONValue] = try subject.value() {
+                XCTAssertEqual(value, ["foo": JSONValue.Int(5)])
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forOptionalDictionary_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let value: [String: JSONValue]? = try subject.value()
+            if let unwrapped = value {
+                XCTAssertEqual(unwrapped, ["foo": JSONValue.Int(5)])
+            } else {
+                XCTFail("Unexpected null value")
+            }
+        } catch {
+            XCTFail("Invalid value returned")
+        }
+    }
+
+    func testNullableValue_forString_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: String? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forInt_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: Int64? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: Bool? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: Double? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenDictionary() {
+        let subject = JSONValue.Dictionary(["foo": JSONValue.Int(5)])
+        do {
+            let _: [JSONValue]? = try subject.value()
+            XCTFail("Value returned successfully when it shouldn't have")
+        } catch { }
+    }
+
+    func testNullableValue_forString_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let value: String? = try subject.value()
+            XCTAssertNil(value)
+        } catch { }
+    }
+
+    func testNullableValue_forInt_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let value: Int64? = try subject.value()
+            XCTAssertTrue(value == nil)
+        } catch { }
+    }
+
+    func testNullableValue_forBool_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let value: Bool? = try subject.value()
+            XCTAssertTrue(value == nil)
+        } catch { }
+    }
+
+    func testNullableValue_forDouble_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let value: Double? = try subject.value()
+            XCTAssertTrue(value == nil)
+        } catch { }
+    }
+
+    func testNullableValue_forArray_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let value: [JSONValue]? = try subject.value()
+            XCTAssertTrue(value == nil)
+        } catch { }
+    }
+
+    func testNullableValue_forDictionary_whenNull() {
+        let subject = JSONValue.Null
+        do {
+            let value: [String: JSONValue]? = try subject.value()
+            XCTAssertTrue(value == nil)
+        } catch { }
+    }
 }

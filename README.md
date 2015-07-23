@@ -5,8 +5,12 @@ and with the use of new syntax and pattern matching, JSONValue provides a clean 
 
 # Usage
 
-The best way to explain how to use JSONValue is to give an example. For brevity, I'm banging a lot of API calls. Don't do this 
+The best way to explain how to use JSONValue is to give an example. There are two ways to work with JSONValue. You can use
+Pattern Matching, which is built into Swift for working with enums, or you can use the value() method, which will make
+use of Swift's error handling when something goes wrong. For brevity, I'm banging a lot of API calls. Don't do this 
 in your production code!
+
+## Pattern Matching
 
 ```swift
 import JSONValue
@@ -17,7 +21,13 @@ let JSONDataString = "[\"wat\", 5, {\"foo\": 3.5, \"bar\": null, \"baz\": true}]
 // JSONValue comes with an NSData decoder; we'll use that to convert our string 
 // to a JSONValue
 let JSONData = JSONDataString.dataUsingEncoding(NSUTF8StringEncoding)!
-let JSON = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
+let JSONRoot = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
+
+// Start by pulling out our root item; JSON will be a [JSONValue], and we can access it
+// like any other array.
+guard case .Array(let JSON) = JSONRoot else {
+    return
+}
 
 // Lets access the first item in our array, confirming its a String type
 guard case .String(let firstItemValue) = JSON[0] else {
@@ -65,7 +75,7 @@ print(bazValue) // Prints true
 
 ```
 
-## Nullability
+### Nullability
 
 In the previous example there was a dictionary item with the key "bar", and it was set to null. JSONValue has a case
 for Null, but its an awkward type to interact with; its the only one without an associated value, and expecting it to 
@@ -78,6 +88,47 @@ there so the API returns null. Here's how we'd make use of it:
 if case .String(let barValue)? = thirdItemValue["bar"]?.nullable {
     print(barValue) // Would print the string contained in "bar", if it had one.
 }
+```
+
+## value() and error handling
+
+We're going to skip over decoding here as it's in the above example.
+
+```swift
+// Lets access the first item in our array, confirming its a String type
+let firstItemValue: String = try JSON[0].value()
+
+// Now we have a local variable called firstItemValue that is a Swift.String 
+// containing the value "wat"
+print(firstItemValue) // Prints "wat"
+
+let secondItemValue: Int64 = try JSON[1].value()
+print(secondItemValue) // Prints 5
+
+
+// Our third item is a dictionary. We'll extract that data out into a regular 
+// Swift dictionary of type [String: JSONValue]
+
+let thirdItemValue: [String: JSONValue] = try JSON[2].value()
+
+// value() supports working with optionals. If there isn't a value at "foo", or the value
+is .Null, we'll return nil:
+let fooValue: Double? = try thirdItemValue["foo"]?.value()
+
+if let unwrapped = fooValue {
+    print(unwrapped) // Prints 3.5
+}
+
+// You can also unwrap into a non-optional
+if let unwrapped: Double = try thirdItemValue["foo"]?.value() {
+    print(unwrapped) // Prints 3.5
+}
+
+// An example of a nil item:
+let watValue: Double? = try thirdItemValue["wat"]?.value()
+
+print(watValue)
+
 ```
 
 # Custom Coders
