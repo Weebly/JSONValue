@@ -112,7 +112,7 @@ print(secondItemValue) // Prints 5
 let thirdItemValue: [String: JSONValue] = try JSON[2].value()
 
 // value() supports working with optionals. If there isn't a value at "foo", or the value
-is .Null, we'll return nil:
+// is .Null, we'll return nil:
 let fooValue: Double? = try thirdItemValue["foo"]?.value()
 
 if let unwrapped = fooValue {
