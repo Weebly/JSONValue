@@ -127,7 +127,7 @@ if let unwrapped: Double = try thirdItemValue["foo"]?.value() {
 // An example of a nil item:
 let watValue: Double? = try thirdItemValue["wat"]?.value()
 
-print(watValue)
+print(watValue) // Prints nil
 
 ```
 
