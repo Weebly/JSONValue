@@ -11,13 +11,13 @@
     of the JSON types, most containing an associated value for the native representation.
 */
 public enum JSONValue {
-    case String(Swift.String)
-    case Double(Swift.Double)
-    case Int(Swift.Int64)
-    case Bool(Swift.Bool)
-    case Null
-    case Array([JSONValue])
-    case Dictionary([Swift.String: JSONValue])
+    case string(Swift.String)
+    case double(Swift.Double)
+    case int(Swift.Int64)
+    case bool(Swift.Bool)
+    case null
+    case array([JSONValue])
+    case dictionary([Swift.String: JSONValue])
 
     /** 
         Return an optional JSONValue. If self is .Null, returns nil; otherwise it returns self. This
@@ -29,7 +29,7 @@ public enum JSONValue {
     */
     public var nullable: JSONValue? {
         switch self {
-        case .Null: return nil
+        case .null: return nil
         default: return self
         }
     }
@@ -45,14 +45,14 @@ public enum JSONValue {
     */
     public func value<ValueType>() throws -> ValueType {
         switch self {
-        case .String(let value) where ValueType.self == Swift.String.self: return (value as! ValueType)
-        case .Double(let value) where ValueType.self == Swift.Double.self: return (value as! ValueType)
-        case .Int(let value) where ValueType.self == Swift.Int64.self: return (value as! ValueType)
-        case .Bool(let value) where ValueType.self == Swift.Bool.self: return (value as! ValueType)
-        case .Array(let value) where ValueType.self == Swift.Array<JSONValue>.self: return (value as! ValueType)
-        case .Dictionary(let value) where ValueType.self == Swift.Dictionary<Swift.String, JSONValue>.self: return (value as! ValueType)
-        case .Null: throw JSONValueError.NoValue
-        default: throw JSONValueError.TypeMismatch
+        case .string(let value) where ValueType.self == Swift.String.self: return (value as! ValueType)
+        case .double(let value) where ValueType.self == Swift.Double.self: return (value as! ValueType)
+        case .int(let value) where ValueType.self == Swift.Int64.self: return (value as! ValueType)
+        case .bool(let value) where ValueType.self == Swift.Bool.self: return (value as! ValueType)
+        case .array(let value) where ValueType.self == Swift.Array<JSONValue>.self: return (value as! ValueType)
+        case .dictionary(let value) where ValueType.self == Swift.Dictionary<Swift.String, JSONValue>.self: return (value as! ValueType)
+        case .null: throw JSONValueError.noValue
+        default: throw JSONValueError.typeMismatch
         }
     }
 
@@ -64,76 +64,76 @@ public enum JSONValue {
         - Throws:   JSONValueError.TypeMismatch     If Value isn't the correct type held by the `JSONValue`.
         - Returns:  The associated value contained in the `JSONValue` when the correct type is passed.
     */
-    public func value<ValueType: NilLiteralConvertible>() throws -> ValueType {
+    public func value<ValueType: ExpressibleByNilLiteral>() throws -> ValueType {
         // FIXME: This switch is using unsafeBitCast. This isn't ideal, but (Optional.Some(value) as! Value.self) is resulting
         // in a runtime error so it was necessary. For some reason the compiler things we're trying to force-cast the type of value
         // instead of an optional.
         switch self {
-        case .String(let value) where ValueType.self == Swift.String.self: return (value as! ValueType)
-        case .String(let value) where ValueType.self == Optional<Swift.String>.self: return unsafeBitCast(Optional.Some(value), ValueType.self)
-        case .Double(let value) where ValueType.self == Swift.Double.self: return (value as! ValueType)
-        case .Double(let value) where ValueType.self == Optional<Swift.Double>.self: return unsafeBitCast(Optional.Some(value), ValueType.self)
-        case .Int(let value) where ValueType.self == Swift.Int64.self: return (value as! ValueType)
-        case .Int(let value) where ValueType.self == Optional<Swift.Int64>.self: return unsafeBitCast(Optional.Some(value), ValueType.self)
-        case .Bool(let value) where ValueType.self == Swift.Bool.self: return (value as! ValueType)
-        case .Bool(let value) where ValueType.self == Optional<Swift.Bool>.self: return unsafeBitCast(Optional.Some(value), ValueType.self)
-        case .Array(let value) where ValueType.self == Swift.Array<JSONValue>.self: return (value as! ValueType)
-        case .Array(let value) where ValueType.self == Optional<Swift.Array<JSONValue>>.self: return unsafeBitCast(Optional.Some(value), ValueType.self)
-        case .Dictionary(let value) where ValueType.self == Swift.Dictionary<Swift.String, JSONValue>.self: return (value as! ValueType)
-        case .Dictionary(let value) where ValueType.self == Optional<Swift.Dictionary<Swift.String, JSONValue>>.self: return unsafeBitCast(Optional.Some(value), ValueType.self)
-        case .Null: return nil
-        default: throw JSONValueError.TypeMismatch
+        case .string(let value) where ValueType.self == Swift.String.self: return (value as! ValueType)
+        case .string(let value) where ValueType.self == Optional<Swift.String>.self: return unsafeBitCast(Optional.some(value), to: ValueType.self)
+        case .double(let value) where ValueType.self == Swift.Double.self: return (value as! ValueType)
+        case .double(let value) where ValueType.self == Optional<Swift.Double>.self: return unsafeBitCast(Optional.some(value), to: ValueType.self)
+        case .int(let value) where ValueType.self == Swift.Int64.self: return (value as! ValueType)
+        case .int(let value) where ValueType.self == Optional<Swift.Int64>.self: return unsafeBitCast(Optional.some(value), to: ValueType.self)
+        case .bool(let value) where ValueType.self == Swift.Bool.self: return (value as! ValueType)
+        case .bool(let value) where ValueType.self == Optional<Swift.Bool>.self: return unsafeBitCast(Optional.some(value), to: ValueType.self)
+        case .array(let value) where ValueType.self == Swift.Array<JSONValue>.self: return (value as! ValueType)
+        case .array(let value) where ValueType.self == Optional<Swift.Array<JSONValue>>.self: return unsafeBitCast(Optional.some(value), to: ValueType.self)
+        case .dictionary(let value) where ValueType.self == Swift.Dictionary<Swift.String, JSONValue>.self: return (value as! ValueType)
+        case .dictionary(let value) where ValueType.self == Optional<Swift.Dictionary<Swift.String, JSONValue>>.self: return unsafeBitCast(Optional.some(value), to: ValueType.self)
+        case .null: return nil
+        default: throw JSONValueError.typeMismatch
         }
     }
 }
 
-public enum JSONValueError: ErrorType {
-    case TypeMismatch
-    case NoValue
+public enum JSONValueError: Error {
+    case typeMismatch
+    case noValue
 }
 
 extension JSONValue: Equatable { }
 
 public func == (lhs: JSONValue, rhs: JSONValue) -> Bool {
     switch lhs {
-    case .String(let l):
-        if case .String(let r) = rhs {
+    case .string(let l):
+        if case .string(let r) = rhs {
             return l == r
         } else {
             return false
         }
         
-    case .Double(let l):
-        if case .Double(let r) = rhs {
+    case .double(let l):
+        if case .double(let r) = rhs {
             return l == r
         } else {
             return false
         }
         
-    case .Int(let l):
-        if case .Int(let r) = rhs {
+    case .int(let l):
+        if case .int(let r) = rhs {
             return l == r
         } else {
             return false
         }
         
-    case .Bool(let l):
-        if case .Bool(let r) = rhs {
+    case .bool(let l):
+        if case .bool(let r) = rhs {
             return l == r
         } else {
             return false
         }
         
-    case .Null:
-        if case .Null = rhs {
+    case .null:
+        if case .null = rhs {
             return true
         } else {
             return false
         }
     
-    case .Array(let l):
-        if case .Array(let r) = rhs where l.count == r.count {
-            for (index, leftObject) in l.enumerate() {
+    case .array(let l):
+        if case .array(let r) = rhs , l.count == r.count {
+            for (index, leftObject) in l.enumerated() {
                 if leftObject != r[index] {
                     return false
                 }
@@ -144,8 +144,8 @@ public func == (lhs: JSONValue, rhs: JSONValue) -> Bool {
             return false
         }
         
-    case .Dictionary(let l):
-        if case .Dictionary(let r) = rhs where l.count == r.count {
+    case .dictionary(let l):
+        if case .dictionary(let r) = rhs , l.count == r.count {
             for (key, leftObject) in l {
                 if leftObject != r[key] {
                     return false

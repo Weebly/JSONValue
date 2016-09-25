@@ -8,48 +8,48 @@
 
 import Foundation
 
-private let trueNumber = NSNumber(bool: true)
-private let falseNumber = NSNumber(bool: false)
-private let trueObjCType = String.fromCString(trueNumber.objCType)
-private let falseObjCType = String.fromCString(falseNumber.objCType)
+private let trueNumber = NSNumber(value: true)
+private let falseNumber = NSNumber(value: false)
+private let trueObjCType = String(cString: trueNumber.objCType)
+private let falseObjCType = String(cString: falseNumber.objCType)
 
 extension NSNumber {
-    private var isBool: Bool {
-        let type = String.fromCString(objCType)
-        return (compare(trueNumber) == .OrderedSame && type == trueObjCType) || (compare(falseNumber) == .OrderedSame && type == falseObjCType)
+    fileprivate var isBool: Bool {
+        let type = String(cString: objCType)
+        return (compare(trueNumber) == .orderedSame && type == trueObjCType) || (compare(falseNumber) == .orderedSame && type == falseObjCType)
     }
     
-    private var isDouble: Bool {
-        let type = objCType.memory
+    fileprivate var isDouble: Bool {
+        let type = objCType.pointee
         return type == Int8(UnicodeScalar("d").value) || type == Int8(UnicodeScalar("f").value)
     }
 }
 
 /**
-    A `JSONValueJSONDataCoder` handles conversion between an `NSData` containing JSON Data and a
-    `JSONValue`. Internally it uses the existing `NSJSONSerialization` class to handle the
+    A `JSONValueJSONDataCoder` handles conversion between a `Data` containing JSON Data and a
+    `JSONValue`. Internally it uses the existing `JSONSerialization` class to handle the
     conversion.
 */
 public class JSONValueJSONDataCoder: JSONValueCoder {
-    public typealias ConversionType = NSData
+    public typealias ConversionType = Data
     
     public init() { }
 
-    public func encodeJSONValue(value: JSONValue) throws -> ConversionType {
+    public func encodeJSONValue(_ value: JSONValue) throws -> ConversionType {
         switch value {
-        case .Array(_), .Dictionary(_): return try NSJSONSerialization.dataWithJSONObject(serializeJSONValueToObject(value), options: [])
-        default: throw JSONValueCoderError.NotRootType
+        case .array(_), .dictionary(_): return try JSONSerialization.data(withJSONObject: serializeJSONValue(toObject: value), options: [])
+        default: throw JSONValueCoderError.notRootType
         }
     }
 
-    public func decodeJSONValue(from: ConversionType) throws -> JSONValue {
-        let object: AnyObject
+    public func decodeJSONValue(_ from: ConversionType) throws -> JSONValue {
+        let object: Any
         
         do {
-            object = try NSJSONSerialization.JSONObjectWithData(from, options: [])
+            object = try JSONSerialization.jsonObject(with: from, options: [])
         } catch let error as NSError {
             if error.code == 3840 && error.domain == NSCocoaErrorDomain {
-                throw JSONValueCoderError.NotRootType
+                throw JSONValueCoderError.notRootType
             } else {
                 throw error
             }
@@ -58,25 +58,25 @@ public class JSONValueJSONDataCoder: JSONValueCoder {
         return try deserializeObject(object)
     }
     
-    private func serializeJSONValueToObject(value: JSONValue) -> AnyObject {
-        var object: AnyObject
+    private func serializeJSONValue(toObject value: JSONValue) -> Any {
+        var object: Any
         
         switch value {
-        case .String(let s): object = s
-        case .Null: object = NSNull()
-        case .Int(let v): object = NSNumber(longLong: v)
-        case .Double(let v): object = NSNumber(double: v)
-        case .Bool(let v): object = NSNumber(bool: v)
-        case .Dictionary(let dict):
+        case .string(let s): object = s
+        case .null: object = NSNull()
+        case .int(let v): object = NSNumber(value: v as Int64)
+        case .double(let v): object = NSNumber(value: v as Double)
+        case .bool(let v): object = NSNumber(value: v as Bool)
+        case .dictionary(let dict):
             let mutableDict = NSMutableDictionary()
             for (key, val) in dict {
-                mutableDict.setValue(serializeJSONValueToObject(val), forKey: key)
+                mutableDict.setValue(serializeJSONValue(toObject: val), forKey: key)
             }
             object = NSDictionary(dictionary: mutableDict)
-        case .Array(let array):
+        case .array(let array):
             let mutableArray = NSMutableArray()
             for obj in array {
-                mutableArray.addObject(serializeJSONValueToObject(obj))
+                mutableArray.add(serializeJSONValue(toObject: obj))
             }
             
             object = NSArray(array: mutableArray)
@@ -85,43 +85,43 @@ public class JSONValueJSONDataCoder: JSONValueCoder {
         return object
     }
     
-    private func deserializeObject(object: AnyObject) throws -> JSONValue {
+    private func deserializeObject(_ object: Any) throws -> JSONValue {
         let convertedData: JSONValue
         
         if let array = object as? NSArray {
             var dataArray = [JSONValue]()
             
             for obj in array {
-                dataArray.append(try deserializeObject(obj))
+                dataArray.append(try deserializeObject(obj as AnyObject))
             }
             
-            convertedData = JSONValue.Array(dataArray)
+            convertedData = JSONValue.array(dataArray)
         } else if let dict = object as? NSDictionary {
             var dataDict = [String: JSONValue]()
             
             for (key, obj) in dict {
                 guard let k = key as? String else {
-                    throw JSONValueCoderError.InvalidObjectKey
+                    throw JSONValueCoderError.invalidObjectKey
                 }
                 
-                dataDict[k] = try deserializeObject(obj)
+                dataDict[k] = try deserializeObject(obj as AnyObject)
             }
             
-            convertedData = JSONValue.Dictionary(dataDict)
+            convertedData = JSONValue.dictionary(dataDict)
         } else if let number = object as? NSNumber {
             if number.isBool {
-                convertedData = JSONValue.Bool(number.boolValue)
+                convertedData = JSONValue.bool(number.boolValue)
             } else if number.isDouble {
-                convertedData = JSONValue.Double(number.doubleValue)
+                convertedData = JSONValue.double(number.doubleValue)
             } else {
-                convertedData = JSONValue.Int(number.longLongValue)
+                convertedData = JSONValue.int(number.int64Value)
             }
         } else if let string = object as? NSString {
-            convertedData = JSONValue.String(string as String)
+            convertedData = JSONValue.string(string as String)
         } else if object is NSNull {
-            convertedData = JSONValue.Null
+            convertedData = JSONValue.null
         } else {
-            throw JSONValueJSONDataCoderError.InvalidObject
+            throw JSONValueJSONDataCoderError.invalidObject
         }
         
         return convertedData
@@ -129,6 +129,6 @@ public class JSONValueJSONDataCoder: JSONValueCoder {
 }
 
 /// Errors that are thrown during coding using a JSONValueJSONDataCoder.
-public enum JSONValueJSONDataCoderError: ErrorType {
-    case InvalidObject /// Thrown when an unconvertable type is found deserialized.
+public enum JSONValueJSONDataCoderError: Error {
+    case invalidObject /// Thrown when an unconvertable type is found deserialized.
 }

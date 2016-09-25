@@ -26,56 +26,56 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     
     func testEncodeJSONValue_withArray_encodesCorrectly() {
         let array: [JSONValue] = [
-            .String("foo"),
-            .Int(5),
-            .Double(1.8),
-            .Bool(false),
-            .Null
+            .string("foo"),
+            .int(5),
+            .double(1.8),
+            .bool(false),
+            .null
         ]
-        let value = JSONValue.Array(array)
+        let value = JSONValue.array(array)
         let data = try! subject.encodeJSONValue(value)
-        let result = try! NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSArray
+        let result = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
         let expected: NSArray = ["foo", 5, 1.8, false, NSNull()]
         XCTAssertEqual(result, expected)
     }
     
     func testEncodeJSONValue_withDictionary_encodesCorrectly() {
         let dict: [String: JSONValue] = [
-            "s": .String("bar"),
-            "i": .Int(10),
-            "d": .Double(5.3),
-            "b": .Bool(true),
-            "n": .Null
+            "s": .string("bar"),
+            "i": .int(10),
+            "d": .double(5.3),
+            "b": .bool(true),
+            "n": .null
         ]
-        let value = JSONValue.Dictionary(dict)
+        let value = JSONValue.dictionary(dict)
         let data = try! subject.encodeJSONValue(value)
-        let result = try! NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSDictionary
-        let expected: NSDictionary = ["s": "bar", "i": NSNumber(integer: 10), "d": NSNumber(double: 5.3), "b": NSNumber(bool: true), "n": NSNull()]
+        let result = try! JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
+        let expected: NSDictionary = ["s": "bar", "i": NSNumber(value: 10 as Int), "d": NSNumber(value: 5.3 as Double), "b": NSNumber(value: true as Bool), "n": NSNull()]
         XCTAssertEqual(result, expected)
     }
     
     func testEncodeJSONValue_withComplicatedContents_encodesCorrectly() {
         let array: [JSONValue] = [
-            .String("foo"),
-            .Dictionary([
-                "bar": .Int(7),
-                "arr": .Array([
-                    .Int(3),
-                    .Bool(true)
+            .string("foo"),
+            .dictionary([
+                "bar": .int(7),
+                "arr": .array([
+                    .int(3),
+                    .bool(true)
                 ])
             ])
         ]
         
-        let value = JSONValue.Array(array)
+        let value = JSONValue.array(array)
         let data = try! subject.encodeJSONValue(value)
-        let result = try! NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSArray
+        let result = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
         let expected: NSArray = ["foo", ["bar": 7, "arr": [3, true]]]
         XCTAssertEqual(result, expected)
     }
     
     func testEncodeJSONValue_withJustString_throwsError() {
         do {
-            try subject.encodeJSONValue(.String("foo"))
+            _ = try subject.encodeJSONValue(.string("foo"))
         } catch {
             return
         }
@@ -85,7 +85,7 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     
     func testEncodeJSONValue_withJustInt_throwsError() {
         do {
-            try subject.encodeJSONValue(.Int(5))
+            _ = try subject.encodeJSONValue(.int(5))
         } catch {
             return
         }
@@ -95,7 +95,7 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     
     func testEncodeJSONValue_withJustDouble_throwsError() {
         do {
-            try subject.encodeJSONValue(.Double(5.3))
+            _ = try subject.encodeJSONValue(.double(5.3))
         } catch {
             return
         }
@@ -105,7 +105,7 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     
     func testEncodeJSONValue_withJustBool_throwsError() {
         do {
-            try subject.encodeJSONValue(.Bool(false))
+            _ = try subject.encodeJSONValue(.bool(false))
         } catch {
             return
         }
@@ -115,7 +115,7 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     
     func testEncodeJSONValue_withJustNull_throwsError() {
         do {
-            try subject.encodeJSONValue(.Null)
+            _ = try subject.encodeJSONValue(.null)
         } catch {
             return
         }
@@ -127,8 +127,8 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
 
     func testDecodeJSONValue_withInvalidRootType_throwsError() {
         do {
-            try subject.decodeJSONValue(dataFromString("test"))
-        } catch JSONValueCoderError.NotRootType {
+            _ = try subject.decodeJSONValue(dataFromString("test"))
+        } catch JSONValueCoderError.notRootType {
             return
         } catch { }
         
@@ -146,31 +146,31 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
             return
         }
 
-        guard case .Array(let rootArray) = value else {
+        guard case .array(let rootArray) = value else {
             XCTFail("Decoding generated an incorrect root element")
             return
         }
 
-        guard case .String(let watValue) = rootArray[0] else {
+        guard case .string(let watValue) = rootArray[0] else {
             XCTFail("Decoding generated an incorrect first element")
             return
         }
 
         XCTAssertEqual(watValue, "wat")
 
-        guard case .Int(let fiveValue) = rootArray[1] else {
+        guard case .int(let fiveValue) = rootArray[1] else {
             XCTFail("Decoding generated an incorrect second element")
             return
         }
 
         XCTAssertEqual(fiveValue, 5)
 
-        guard case .Dictionary(let dictionaryValue) = rootArray[2] else {
+        guard case .dictionary(let dictionaryValue) = rootArray[2] else {
             XCTFail("Decoding generated an incorrect third element")
             return
         }
 
-        guard case .Double(let fooValue)? = dictionaryValue["foo"] else {
+        guard case .double(let fooValue)? = dictionaryValue["foo"] else {
             XCTFail("Decoding generated an incorrect foo element")
             return
         }
@@ -182,9 +182,9 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
             return
         }
 
-        XCTAssertEqual(nullValue, JSONValue.Null)
+        XCTAssertEqual(nullValue, JSONValue.null)
 
-        guard case .Bool(let bazValue)? = dictionaryValue["baz"] else {
+        guard case .bool(let bazValue)? = dictionaryValue["baz"] else {
             XCTFail("Decoding generated an incorrect baz element")
             return
         }
@@ -194,7 +194,7 @@ class JSONValueJSONDataCoder_Tests: XCTestCase {
     
     // MARK: Helpers
     
-    func dataFromString(s: String) -> NSData {
-        return s.dataUsingEncoding(NSUTF8StringEncoding)!
+    func dataFromString(_ s: String) -> Data {
+        return s.data(using: String.Encoding.utf8)!
     }
 }

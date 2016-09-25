@@ -11,7 +11,7 @@
     can convert to and from any data by specifying the ConversionType.
 */
 public protocol JSONValueCoder {
-    typealias ConversionType
+    associatedtype ConversionType
 
     /**
         Encodes a JSONValue into the `ConversionType`.
@@ -20,7 +20,7 @@ public protocol JSONValueCoder {
     
         - parameter value: The `JSONValue` to convert.
     */
-    func encodeJSONValue(value: JSONValue) throws -> ConversionType
+    func encodeJSONValue(_ value: JSONValue) throws -> ConversionType
 
     /**
         Decodes a `JSONValue` from the `ConversionType`.
@@ -30,12 +30,12 @@ public protocol JSONValueCoder {
     
         - parameter     from:   The ConversionType to transform into a `JSONValue`
     */
-    func decodeJSONValue(from: ConversionType) throws -> JSONValue
+    func decodeJSONValue(_ from: ConversionType) throws -> JSONValue
 }
 
 /// Common errors thrown while coding `JSONValue`s.
-public enum JSONValueCoderError: ErrorType {
-    case NotRootType
-    case InvalidObjectKey
-    case InvalidObject
+public enum JSONValueCoderError: Error {
+    case notRootType
+    case invalidObjectKey
+    case invalidObject
 }
