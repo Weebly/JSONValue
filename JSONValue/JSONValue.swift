@@ -11,13 +11,13 @@
     of the JSON types, most containing an associated value for the native representation.
 */
 public enum JSONValue {
-    case string(Swift.String)
-    case double(Swift.Double)
-    case int(Swift.Int64)
-    case bool(Swift.Bool)
+    case string(String)
+    case double(Double)
+    case int(Int64)
+    case bool(Bool)
     case null
     case array([JSONValue])
-    case dictionary([Swift.String: JSONValue])
+    case dictionary([String: JSONValue])
 
     /** 
         Return an optional JSONValue. If self is .Null, returns nil; otherwise it returns self. This

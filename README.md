@@ -20,17 +20,17 @@ let JSONDataString = "[\"wat\", 5, {\"foo\": 3.5, \"bar\": null, \"baz\": true}]
 
 // JSONValue comes with an NSData decoder; we'll use that to convert our string 
 // to a JSONValue
-let JSONData = JSONDataString.dataUsingEncoding(NSUTF8StringEncoding)!
+let JSONData = JSONDataString.dataUsingEncoding(.utf8)!
 let JSONRoot = try! JSONValueJSONDataCoder().decodeJSONValue(JSONData)
 
 // Start by pulling out our root item; JSON will be a [JSONValue], and we can access it
 // like any other array.
-guard case .Array(let JSON) = JSONRoot else {
+guard case .array(let JSON) = JSONRoot else {
     return
 }
 
 // Lets access the first item in our array, confirming its a String type
-guard case .String(let firstItemValue) = JSON[0] else {
+guard case .string(let firstItemValue) = JSON[0] else {
     // If this block gets hit, the first item in our array isn't a string.
     // In our case it is so it isn't hit. Using guard this way
     // allows you to fail early when the JSON isn't what you expect
@@ -55,11 +55,11 @@ if case .Int(let secondItemValue) = JSON[1] {
 // is required for subsequent statements. In this use of guard
 // i'll place the let before the case; this is typical when
 // an enum has more than one associated value.
-guard case let .Dictionary(thirdItemValue) = JSON[2] else { return }
+guard case let .dictionary(thirdItemValue) = JSON[2] else { return }
 
 // Now for some fancy Swift pattern matching. We want our JSONValue.Double's 
 // value from thirdItemValue under the "foo" key:
-guard case .Double(let fooValue)? = thirdItemValue["foo"] else { return }
+guard case .double(let fooValue)? = thirdItemValue["foo"] else { return }
 
 // Note that our ? in the above example is a use of the new Optional
 // pattern matching in Swift 2. It unwraps the dictionary result for
@@ -69,7 +69,7 @@ print(fooValue) // Prints 3.5
 
 // Lets skip over "bar" for now, and grab our "baz"
 
-guard case .Bool(let bazValue)? = thirdItemValue["baz"] else { return }
+guard case .bool(let bazValue)? = thirdItemValue["baz"] else { return }
 
 print(bazValue) // Prints true
 
