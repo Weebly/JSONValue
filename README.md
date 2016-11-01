@@ -7,7 +7,7 @@ and with the use of new syntax and pattern matching, JSONValue provides a clean 
 
 The best way to explain how to use JSONValue is to give an example. There are two ways to work with JSONValue. You can use
 Pattern Matching, which is built into Swift for working with enums, or you can use the value() method, which will make
-use of Swift's error handling when something goes wrong. For brevity, I'm banging a lot of API calls. Don't do this 
+use of Swift's error handling when something goes wrong. For brevity, I'm unsafely unwrapping a lot of API calls. Don't do this 
 in your production code!
 
 ## Pattern Matching
@@ -29,7 +29,7 @@ guard case .array(let JSON) = JSONRoot else {
     return
 }
 
-// Lets access the first item in our array, confirming its a String type
+// Let's access the first item in our array, confirming its a String type
 guard case .string(let firstItemValue) = JSON[0] else {
     // If this block gets hit, the first item in our array isn't a string.
     // In our case it is so it isn't hit. Using guard this way
@@ -51,9 +51,9 @@ if case .Int(let secondItemValue) = JSON[1] {
 // Swift dictionary of type [String: JSONValue]
 
 // Guard also makes a matched variable available at the scope it was
-// called. This allows you to prevent nesting if's if the condition
+// called. This allows you to prevent nesting ifs if the condition
 // is required for subsequent statements. In this use of guard
-// i'll place the let before the case; this is typical when
+// I'll place the let before the case; this is typical when
 // an enum has more than one associated value.
 guard case let .dictionary(thirdItemValue) = JSON[2] else { return }
 
@@ -67,7 +67,7 @@ guard case .double(let fooValue)? = thirdItemValue["foo"] else { return }
 
 print(fooValue) // Prints 3.5
 
-// Lets skip over "bar" for now, and grab our "baz"
+// Let's skip over "bar" for now, and grab our "baz"
 
 guard case .bool(let bazValue)? = thirdItemValue["baz"] else { return }
 
@@ -78,7 +78,7 @@ print(bazValue) // Prints true
 ### Nullability
 
 In the previous example there was a dictionary item with the key "bar", and it was set to null. JSONValue has a case
-for Null, but its an awkward type to interact with; its the only one without an associated value, and expecting it to 
+for Null, but it's an awkward type to interact with; it's the only one without an associated value, and expecting it to 
 be there isn't something one would typically do. To account for nullable values theres a property on JSONValue called
 nullable. Its a simple method: It returns an optional JSONValue. If the case is .Null, it returns nil, otherwise it
 returns self. In our previous example, lets assume that "bar" can return a String, but in this case the data wasn't
@@ -95,7 +95,7 @@ if case .String(let barValue)? = thirdItemValue["bar"]?.nullable {
 We're going to skip over decoding here as it's in the above example.
 
 ```swift
-// Lets access the first item in our array, confirming its a String type
+// Let's access the first item in our array, confirming it's a String type
 let firstItemValue: String = try JSON[0].value()
 
 // Now we have a local variable called firstItemValue that is a Swift.String 
