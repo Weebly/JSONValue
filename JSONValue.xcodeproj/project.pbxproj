@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2038ED2059DF3800C82A30 /* JSONValueJSONDataCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331FB1B3D9AF000E8E09B /* JSONValueJSONDataCoder.swift */; };
+		1A2038EE2059DF3800C82A30 /* JSONValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331F61B3D9A7500E8E09B /* JSONValueCoder.swift */; };
+		1A2038EF2059DF3800C82A30 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331F41B3D985E00E8E09B /* JSONValue.swift */; };
+		1A2038F22059DF3800C82A30 /* JSONValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6331DD1B3D985200E8E09B /* JSONValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A6331DE1B3D985200E8E09B /* JSONValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6331DD1B3D985200E8E09B /* JSONValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A6331E51B3D985200E8E09B /* JSONValue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6331DA1B3D985200E8E09B /* JSONValue.framework */; };
 		1A6331F51B3D985E00E8E09B /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331F41B3D985E00E8E09B /* JSONValue.swift */; };
@@ -27,10 +31,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A2038F72059DF3800C82A30 /* JSONValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2038F82059DF3800C82A30 /* JSONValue (iOS).plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "JSONValue (iOS).plist"; path = "/Users/james/repos/JSONValue/JSONValue/JSONValue (iOS).plist"; sourceTree = "<absolute>"; };
 		1A584D811B42E48500CFA6D0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A6331DA1B3D985200E8E09B /* JSONValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6331DD1B3D985200E8E09B /* JSONValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONValue.h; sourceTree = "<group>"; };
-		1A6331DF1B3D985200E8E09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A6331DF1B3D985200E8E09B /* JSONValue (Mac).plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSONValue (Mac).plist"; sourceTree = "<group>"; };
 		1A6331E41B3D985200E8E09B /* JSONValueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONValueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6331EB1B3D985200E8E09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6331F41B3D985E00E8E09B /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
@@ -41,6 +47,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1A2038F02059DF3800C82A30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A6331D61B3D985200E8E09B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,6 +86,7 @@
 			children = (
 				1A6331DA1B3D985200E8E09B /* JSONValue.framework */,
 				1A6331E41B3D985200E8E09B /* JSONValueTests.xctest */,
+				1A2038F72059DF3800C82A30 /* JSONValue.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,7 +96,8 @@
 			children = (
 				1A6331FA1B3D9AD900E8E09B /* Serializers */,
 				1A6331DD1B3D985200E8E09B /* JSONValue.h */,
-				1A6331DF1B3D985200E8E09B /* Info.plist */,
+				1A6331DF1B3D985200E8E09B /* JSONValue (Mac).plist */,
+				1A2038F82059DF3800C82A30 /* JSONValue (iOS).plist */,
 				1A6331F41B3D985E00E8E09B /* JSONValue.swift */,
 				1A6331F61B3D9A7500E8E09B /* JSONValueCoder.swift */,
 				1A584D811B42E48500CFA6D0 /* README.md */,
@@ -111,6 +126,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1A2038F12059DF3800C82A30 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2038F22059DF3800C82A30 /* JSONValue.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A6331D71B3D985200E8E09B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,9 +145,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1A6331D91B3D985200E8E09B /* JSONValue */ = {
+		1A2038EB2059DF3800C82A30 /* JSONValue (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A6331EE1B3D985200E8E09B /* Build configuration list for PBXNativeTarget "JSONValue" */;
+			buildConfigurationList = 1A2038F42059DF3800C82A30 /* Build configuration list for PBXNativeTarget "JSONValue (iOS)" */;
+			buildPhases = (
+				1A2038EC2059DF3800C82A30 /* Sources */,
+				1A2038F02059DF3800C82A30 /* Frameworks */,
+				1A2038F12059DF3800C82A30 /* Headers */,
+				1A2038F32059DF3800C82A30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JSONValue (iOS)";
+			productName = JSONValue;
+			productReference = 1A2038F72059DF3800C82A30 /* JSONValue.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1A6331D91B3D985200E8E09B /* JSONValue (Mac) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A6331EE1B3D985200E8E09B /* Build configuration list for PBXNativeTarget "JSONValue (Mac)" */;
 			buildPhases = (
 				1A6331D51B3D985200E8E09B /* Sources */,
 				1A6331D61B3D985200E8E09B /* Frameworks */,
@@ -135,7 +176,7 @@
 			);
 			dependencies = (
 			);
-			name = JSONValue;
+			name = "JSONValue (Mac)";
 			productName = JSONValue;
 			productReference = 1A6331DA1B3D985200E8E09B /* JSONValue.framework */;
 			productType = "com.apple.product-type.framework";
@@ -190,13 +231,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A6331D91B3D985200E8E09B /* JSONValue */,
+				1A6331D91B3D985200E8E09B /* JSONValue (Mac) */,
 				1A6331E31B3D985200E8E09B /* JSONValueTests */,
+				1A2038EB2059DF3800C82A30 /* JSONValue (iOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1A2038F32059DF3800C82A30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A6331D81B3D985200E8E09B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +263,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1A2038EC2059DF3800C82A30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2038ED2059DF3800C82A30 /* JSONValueJSONDataCoder.swift in Sources */,
+				1A2038EE2059DF3800C82A30 /* JSONValueCoder.swift in Sources */,
+				1A2038EF2059DF3800C82A30 /* JSONValue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A6331D51B3D985200E8E09B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,12 +297,55 @@
 /* Begin PBXTargetDependency section */
 		1A6331E71B3D985200E8E09B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1A6331D91B3D985200E8E09B /* JSONValue */;
+			target = 1A6331D91B3D985200E8E09B /* JSONValue (Mac) */;
 			targetProxy = 1A6331E61B3D985200E8E09B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1A2038F52059DF3800C82A30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "JSONValue/JSONValue (iOS).plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Weebly.JSONValue;
+				PRODUCT_NAME = JSONValue;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1A2038F62059DF3800C82A30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "JSONValue/JSONValue (iOS).plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Weebly.JSONValue;
+				PRODUCT_NAME = JSONValue;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		1A6331EC1B3D985200E8E09B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -285,6 +387,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -326,6 +429,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -343,11 +447,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = JSONValue/Info.plist;
+				INFOPLIST_FILE = "JSONValue/JSONValue (Mac).plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Weebly.JSONValue;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JSONValue;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -364,11 +468,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = JSONValue/Info.plist;
+				INFOPLIST_FILE = "JSONValue/JSONValue (Mac).plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Weebly.JSONValue;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JSONValue;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -401,6 +505,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1A2038F42059DF3800C82A30 /* Build configuration list for PBXNativeTarget "JSONValue (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2038F52059DF3800C82A30 /* Debug */,
+				1A2038F62059DF3800C82A30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1A6331D41B3D985200E8E09B /* Build configuration list for PBXProject "JSONValue" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -410,7 +523,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A6331EE1B3D985200E8E09B /* Build configuration list for PBXNativeTarget "JSONValue" */ = {
+		1A6331EE1B3D985200E8E09B /* Build configuration list for PBXNativeTarget "JSONValue (Mac)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A6331EF1B3D985200E8E09B /* Debug */,
