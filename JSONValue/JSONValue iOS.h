@@ -2,11 +2,11 @@
 //  JSONValue.h
 //  JSONValue
 //
-//  Created by James Richard on 6/26/15.
-//  Copyright © 2015 Weebly. All rights reserved.
+//  Created by James Richard on 3/14/18.
+//  Copyright © 2018 Weebly. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 
 //! Project version number for JSONValue.
 FOUNDATION_EXPORT double JSONValueVersionNumber;
