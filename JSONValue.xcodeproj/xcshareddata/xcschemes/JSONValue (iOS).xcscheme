@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A2038FD205A203200C82A30"
-               BuildableName = "JSONValue__iOS_.framework"
+               BuildableName = "JSONValue.framework"
                BlueprintName = "JSONValue (iOS)"
                ReferencedContainer = "container:JSONValue.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A2038FD205A203200C82A30"
-            BuildableName = "JSONValue__iOS_.framework"
+            BuildableName = "JSONValue.framework"
             BlueprintName = "JSONValue (iOS)"
             ReferencedContainer = "container:JSONValue.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A2038FD205A203200C82A30"
-            BuildableName = "JSONValue__iOS_.framework"
+            BuildableName = "JSONValue.framework"
             BlueprintName = "JSONValue (iOS)"
             ReferencedContainer = "container:JSONValue.xcodeproj">
          </BuildableReference>
