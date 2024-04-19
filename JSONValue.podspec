@@ -15,6 +15,7 @@ JSONValue is a simple enum that provides type-safe JSON data access. It incorpor
   s.osx.deployment_target = '10.10'
   s.source       = { :git => "https://github.com/Weebly/JSONValue.git", :tag => "v2.0" }
   s.source_files  = 'JSONValue/JSONValue.swift', 'JSONValue/JSONValueCoder.swift', 'JSONValue/JSONValueJSONDataCoder.swift'
+  s.resource_bundles = {'JSONValue_privacy' => ['JSONValue/PrivacyInfo.xcprivacy']}
   s.requires_arc = true
 end
 
