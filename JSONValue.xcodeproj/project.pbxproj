@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0319D6662BD2CD37009E47CE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0319D6652BD2CD37009E47CE /* PrivacyInfo.xcprivacy */; };
+		0319D6672BD2CD37009E47CE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0319D6652BD2CD37009E47CE /* PrivacyInfo.xcprivacy */; };
 		1A20390B205AF57500C82A30 /* JSONValueJSONDataCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331FB1B3D9AF000E8E09B /* JSONValueJSONDataCoder.swift */; };
 		1A20390C205AF57800C82A30 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331F41B3D985E00E8E09B /* JSONValue.swift */; };
 		1A20390D205AF57B00C82A30 /* JSONValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6331F61B3D9A7500E8E09B /* JSONValueCoder.swift */; };
@@ -31,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0319D6652BD2CD37009E47CE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1A2038FE205A203200C82A30 /* JSONValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A203901205A203300C82A30 /* JSONValue (iOS).plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSONValue (iOS).plist"; sourceTree = "<group>"; };
 		1A203906205A209400C82A30 /* JSONValue Mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSONValue Mac.h"; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		1A6331DC1B3D985200E8E09B /* JSONValue */ = {
 			isa = PBXGroup;
 			children = (
+				0319D6652BD2CD37009E47CE /* PrivacyInfo.xcprivacy */,
 				1A6331FA1B3D9AD900E8E09B /* Serializers */,
 				1A6331DD1B3D985200E8E09B /* JSONValue iOS.h */,
 				1A203906205A209400C82A30 /* JSONValue Mac.h */,
@@ -252,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0319D6672BD2CD37009E47CE /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0319D6662BD2CD37009E47CE /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
