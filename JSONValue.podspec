@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JSONValue"
-  s.version      = "2.0"
+  s.version      = "3.0.1"
   s.summary      = "Simple, type-safe JSON object representations!"
 
   s.description  = <<-DESC
@@ -11,9 +11,9 @@ JSONValue is a simple enum that provides type-safe JSON data access. It incorpor
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "James Richard" => "james@weebly.com" }
   s.social_media_url   = "http://twitter.com/ketzusaka"
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '12.0'
   s.osx.deployment_target = '10.10'
-  s.source       = { :git => "https://github.com/Weebly/JSONValue.git", :tag => "v2.0" }
+  s.source       = { :git => "https://github.com/Weebly/JSONValue.git", :tag => "v3.0.1" }
   s.source_files  = 'JSONValue/JSONValue.swift', 'JSONValue/JSONValueCoder.swift', 'JSONValue/JSONValueJSONDataCoder.swift'
   s.resource_bundles = {'JSONValue_privacy' => ['JSONValue/PrivacyInfo.xcprivacy']}
   s.requires_arc = true
